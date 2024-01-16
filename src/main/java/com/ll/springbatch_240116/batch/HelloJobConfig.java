@@ -33,6 +33,7 @@ public class HelloJobConfig {
     public Tasklet helloStep1Tasklet1(){
         return ((contribution, chunkContext) -> {
            log.info("Hello world");
+           System.out.println("Hello World");
            return RepeatStatus.FINISHED;
         });
     }
