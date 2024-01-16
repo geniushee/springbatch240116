@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
@@ -19,6 +20,7 @@ public class HelloJobConfig {
     public Job  simpleJob1(JobRepository jobRepository, Step simpleStep1){
         return new JobBuilder("helloJobStep1", jobRepository)
                 .start(simpleStep1)
+                .incrementer(new RunIdIncrementer()) // job enabled가 true일 때만 실행된다. 따라서 메소드를 이용하여 실행할 때는 파라미터를 명시적으로 지정해야함.
                 .build();
     }
 
